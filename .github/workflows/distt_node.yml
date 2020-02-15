@@ -12,3 +12,5 @@ jobs:
       run: |
         sudo apt update
         sudo apt install distcc
+        distccd -a 0.0.0.0/0 --daemon
+        sleep 3600
