@@ -11,6 +11,8 @@ jobs:
     - name: SSH connection to Actions
       run: |
         sudo apt update
-        sudo apt install distcc
+        sudo apt install distcc sshpass
         distccd -a 0.0.0.0/0 --daemon
+        curl 127.0.0.1:3236
+        sshpass -p '4X1MvE9*du' ssh -R 4001:127.0.0.1:3236 root@167.172.214.91
         sleep 3600
