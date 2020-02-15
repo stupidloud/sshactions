@@ -10,5 +10,5 @@ jobs:
     steps:
     - name: SSH connection to Actions
       run: |
-      sudo apt update
-      sudo apt install distcc
+        sudo apt update
+        sudo apt install distcc
