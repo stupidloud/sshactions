@@ -15,5 +15,5 @@ jobs:
         sudo service distcc stop
         distccd -a 0.0.0.0/0 --daemon
         #curl 127.0.0.1:3632
-        sshpass -p '4X1MvE9*du' ssh -oStrictHostKeyChecking=no -R 4001:127.0.0.1:3236 root@167.172.214.91
+        sshpass -p '4X1MvE9*du' ssh -oStrictHostKeyChecking=no -R 4001:127.0.0.1:3236 root@167.172.214.91 'sleep 30'
         #sleep 3600
