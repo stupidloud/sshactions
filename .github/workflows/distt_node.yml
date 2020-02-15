@@ -1,0 +1,14 @@
+name: distcc_node
+on:
+  push:
+    paths:
+      - '.github/workflows/distt_node.yml'
+      
+jobs:
+  Ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+    - name: SSH connection to Actions
+      run: |
+      sudo apt update
+      sudo apt install distcc
