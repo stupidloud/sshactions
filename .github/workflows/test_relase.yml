@@ -9,11 +9,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Build project # This would actually build your project, using zip for an example artifact
+        id: build_project
         run: |
           mkdir my-artifact && touch my-artifact/tf
           zip --junk-paths my-artifact README.md
           date = date +"%Y-%m-%d"
-          echo "::set-env name=action_state::$date"
+          echo "##[set-output name=date_tag;]$date_tag"
 
       - name: Create Release
         id: create_release
@@ -21,8 +22,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ action_state }}
-          release_name: Release ${{ action_state }}
+          tag_name: ${{ steps.build_project.outputs.date_tag }}
+          release_name: Release ${{ steps.build_project.outputs.date_tag }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
