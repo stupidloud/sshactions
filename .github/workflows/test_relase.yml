@@ -1,4 +1,4 @@
-name: Ubuntu
+name: test release
 on:
   watch:
     types: [started]
@@ -12,14 +12,17 @@ jobs:
         run: |
           mkdir my-artifact && touch my-artifact/tf
           zip --junk-paths my-artifact README.md
+          date = date +"%Y-%m-%d"
+          echo "::set-env name=action_state::$date"
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ action_state }}
+          release_name: Release ${{ action_state }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
