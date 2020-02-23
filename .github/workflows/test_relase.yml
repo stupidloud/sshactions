@@ -9,12 +9,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Build project # This would actually build your project, using zip for an example artifact
-        id: build_project
+        id: assemble_artifact
         run: |
           mkdir my-artifact && touch my-artifact/tf
-          zip --junk-paths my-artifact README.md
-          date_tag=$(date +"%Y-%m-%d")
-          echo "##[set-output name=date_tag;]$date_tag"
+          zip -r artifact.zip my-artifact
+          release_tag="R2S-Lean-$(date +%Y-%m-%d)"
+          echo "##[set-output name=release_tag;]$release_tag"
 
       - name: Create Release
         id: create_release
@@ -22,8 +22,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.build_project.outputs.date_tag }}
-          release_name: Release ${{ steps.build_project.outputs.date_tag }}
+          tag_name: ${{ steps.assemble_artifact.outputs.release_tag }}
+          release_name: Release ${{ steps.assemble_artifact.outputs.release_tag }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
@@ -33,6 +33,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ./my-artifact.zip
-          asset_name: ${{ steps.build_project.outputs.date_tag }}.zip
+          asset_path: ./artifact.zip
+          asset_name: ${{ steps.assemble_artifact.outputs.release_tag }}.zip
           asset_content_type: application/zip
