@@ -13,7 +13,7 @@ jobs:
         run: |
           mkdir my-artifact && touch my-artifact/tf
           zip --junk-paths my-artifact README.md
-          date = date +"%Y-%m-%d"
+          date_tag=$(date +"%Y-%m-%d")
           echo "##[set-output name=date_tag;]$date_tag"
 
       - name: Create Release
