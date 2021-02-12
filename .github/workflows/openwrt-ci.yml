@@ -38,6 +38,10 @@ jobs:
           sudo -E apt-get clean
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android/sdk
           df -h
+          git init
+          git remote add origin https://github.com/klever1988/lede
+          git fetch
+          git checkout master
 
       - name: Update feeds
         run: |
