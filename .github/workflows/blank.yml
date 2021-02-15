@@ -19,9 +19,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: send custom message with args
-        uses: yanzay/notify-telegram@v0.1.0
+      - uses: roharon/action-swit@v1
         with:
-          chat: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          status: ${{ job.status }} event triggered first step.
+          webhooks_url: "https://hook.swit.io/idea/210215212919292uCyb/GWv4Y41QpK09RGevRwGq"
+
