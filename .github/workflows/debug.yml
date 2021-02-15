@@ -19,11 +19,11 @@ jobs:
     steps:
 
     - name: send custom message with args
-      uses: appleboy/telegram-action@master
+      uses: yanzay/notify-telegram@v0.1.0
       with:
-        to: ${{ secrets.TELEGRAM_TO }}
+        chat: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        args: The ${{ github.event_name }} event triggered first step.
+        status: ${{ job.status }} event triggered first step.
 
           
     - name: Start SSH via tmate
