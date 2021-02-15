@@ -22,9 +22,10 @@ jobs:
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: |
+        args: |
           The ${{ github.event_name }} event triggered final step.
           echo This event is a pull request that had an assignee removed.
+          
     - name: Start SSH via tmate
       uses: P3TERX/ssh2actions@main
       # Send connection info to Telegram (optional)
