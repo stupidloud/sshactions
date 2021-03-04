@@ -28,12 +28,13 @@ jobs:
       run: |
         echo $TELEGRAM_TOO
         echo ${{ env.TELEGRAM_TOO }}
+        echo $secrets.TELEGRAM_TO
         
     - name: send custom message with args
       uses: appleboy/telegram-action@master
       if: env.TELEGRAM_TOO
       with:
-        to: ${{ secrets.TELEGRAM_TOO }}
-        token: ${{ secrets.TELEGRAM_OKEN }}
+        to: $TELEGRAM_TOO
+        token: ${{ secrets.TELEGRAM_TOKEN }}
         args: The ${{ github.event_name }} event triggered first step.
 
