@@ -19,7 +19,7 @@ jobs:
     - uses: actions/checkout@master
     - name: commands
       run: |
-        echo $env.TELEGRAM_TOO
+        echo $TELEGRAM_TOO
         
     - name: send custom message with args
       uses: appleboy/telegram-action@master
