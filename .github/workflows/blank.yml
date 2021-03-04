@@ -19,6 +19,10 @@ jobs:
     - uses: actions/checkout@master
     - name: commands
       run: |
+        TELEGRAM_TOO='222'
+        
+    - name: commands
+      run: |
         echo $TELEGRAM_TOO
         
     - name: send custom message with args
