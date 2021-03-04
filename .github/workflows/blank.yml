@@ -21,8 +21,8 @@ jobs:
       run: |
         echo $TELEGRAM_TOO
         echo ${{ env.TELEGRAM_TOO }}
-        TELEGRAM_TOO='222'
-        echo "TELEGRAM_TOO=222" >> $GITHUB_ENV
+        #TELEGRAM_TOO='222'
+        #echo "TELEGRAM_TOO=222" >> $GITHUB_ENV
         
     - name: commands
       run: |
@@ -34,7 +34,7 @@ jobs:
       uses: appleboy/telegram-action@master
       if: env.TELEGRAM_TOO
       with:
-        to: ${{ env.TELEGRAM_TO }}
+        to: $TELEGRAM_TOO
         token: ${{ secrets.TELEGRAM_TOKEN }}
         args: The ${{ github.event_name }} event triggered first step.
 
