@@ -32,7 +32,7 @@ jobs:
         echo $TELEGRAM_TOO
         echo ${{ env.TELEGRAM_TOO }}
         #TELEGRAM_TOO='222'
-        #echo "TELEGRAM_TOO=222" >> $GITHUB_ENV
+        echo "TELEGRAM_TOO=${{secrets.TELEGRAM_TO}}" >> $GITHUB_ENV
         
     - name: commands
       run: |
