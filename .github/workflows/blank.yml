@@ -19,11 +19,15 @@ jobs:
     - uses: actions/checkout@master
     - name: commands
       run: |
+        echo $TELEGRAM_TOO
+        echo ${{ env.TELEGRAM_TOO }}
         TELEGRAM_TOO='222'
+        echo "TELEGRAM_TOO=222" >> $GITHUB_ENV
         
     - name: commands
       run: |
         echo $TELEGRAM_TOO
+        echo ${{ env.TELEGRAM_TOO }}
         
     - name: send custom message with args
       uses: appleboy/telegram-action@master
