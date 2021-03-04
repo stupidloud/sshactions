@@ -15,7 +15,17 @@ jobs:
     runs-on: ubuntu-latest
     env: 
       TELEGRAM_TOO: ${{secrets.TELEGRAM_TO}}
+      DAY_OF_WEEK: Mon
+
     steps:
+    - name: "Hello world when it's Monday"
+      if: env.DAY_OF_WEEK == 'Mon'
+      run: echo "Hello $FIRST_NAME $middle_name $Last_Name, today is Monday!"
+      env:
+        FIRST_NAME: Mona
+        middle_name: The
+        Last_Name: Octocat
+
     - uses: actions/checkout@master
     - name: commands
       run: |
