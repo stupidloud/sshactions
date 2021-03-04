@@ -14,9 +14,13 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     env: 
-      TELEGRAM_TOO: ${{secrets.TELEGRAM_TOO}}
+      TELEGRAM_TOO: ${{secrets.TELEGRAM_TO}}
     steps:
     - uses: actions/checkout@master
+    - name: commands
+      run: |
+        echo $env.TELEGRAM_TOO
+        
     - name: send custom message with args
       uses: appleboy/telegram-action@master
       if: env.TELEGRAM_TOO
