@@ -43,8 +43,10 @@ jobs:
     - name: send custom message with args
       uses: appleboy/telegram-action@master
       if: env.TELEGRAM_TOO
+      env:
+        tv: ${{env.TELEGRAM_NO}}
       with:
         to: ${{ env.TELEGRAM_TO }}
-        token: ${{ secrets.TELEGRAM_TOKEN }}
+        token: ${{ secrets.TELEGRAM_TOEN }}
         args: The ${{ github.event_name }} event triggered first step.
 
