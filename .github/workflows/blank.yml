@@ -44,7 +44,7 @@ jobs:
       uses: appleboy/telegram-action@master
       if: env.TELEGRAM_TOO
       with:
-        to: env.TELEGRAM_TOO
+        to: ${{ env.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
         args: The ${{ github.event_name }} event triggered first step.
 
