@@ -18,6 +18,11 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
 
+    - name: Setup timezone
+      uses: zcong1993/setup-timezone@master
+      with:
+        timezone: Asia/Shanghai
+
     - name: send custom message with args
       uses: yanzay/notify-telegram@v0.1.0
       with:
