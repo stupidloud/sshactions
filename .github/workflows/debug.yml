@@ -19,7 +19,6 @@ jobs:
     steps:
 
     - name: Setup timezone
-      if: ${{ secrets.TELEGRAM_TOo }}
       uses: zcong1993/setup-timezone@master
       with:
         timezone: Asia/Shanghai
