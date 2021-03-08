@@ -28,7 +28,7 @@ jobs:
 
     - uses: actions/checkout@master
     - name: commands
-      if: ${{ failure() }} && env.TELEGRAM_TO
+      if: ${{ failure() }}
       run: |
         echo $TELEGRAM_TOO
         echo ${{ env.TELEGRAM_TOO }}
