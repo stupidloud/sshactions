@@ -27,8 +27,8 @@ jobs:
         Last_Name: Octocat
 
     - uses: actions/checkout@master
-    - name: commands
-      if: ${{ failure() }}
+    - name: checkout
+      if: ${{ failure() }} && env.TELEGRAM_TOO
       run: |
         echo $TELEGRAM_TOO
         echo ${{ env.TELEGRAM_TOO }}
