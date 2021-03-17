@@ -33,6 +33,8 @@ jobs:
           
     - name: Start SSH via tmate
       uses: P3TERX/ssh2actions@main
+      env:
+        NGROK_TOKEN: ${{secrets.NGROK_TOKEN}}
       with:
         mode: ngrok
       # Send connection info to Telegram (optional)
