@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SSHKEY: ${{secrets.SSHKEY}}
-    if: ${{env.SSHKEY}}
+    if: env.SSHKEY
     steps:
       - uses: actions/setup-node@v1
         with:
