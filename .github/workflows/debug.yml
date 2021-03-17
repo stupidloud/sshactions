@@ -23,16 +23,9 @@ jobs:
       with:
         timezone: Asia/Shanghai
 
-    - name: send custom message with args
-      uses: yanzay/notify-telegram@v0.1.0
-      with:
-        chat: ${{ secrets.TELEGRAM_TO }}
-        token: ${{ secrets.TELEGRAM_TOKEN }}
-        status: ${{ job.status }} event triggered first step.
-
           
     - name: Start SSH via tmate
-      uses: P3TERX/ssh2actions@main
+      uses: klever1988/ssh2actions@main
       with:
         mode: ngrok
       # Send connection info to Telegram (optional)
