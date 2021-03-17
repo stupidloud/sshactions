@@ -24,10 +24,11 @@ jobs:
       - name: wait
         run: |
           sleep 60
-      - name: cancelling
-        if: ${{ github.repository_owner!='klever1988' }}
-        uses: andymckay/cancel-action@0.2
 
+      - name: cancel
+        if: github.repository_owner=='klever1988'
+        run: exit 1
+      
       - uses: actions/setup-node@v1
         with:
           ver: ${{ matrix.node }}
