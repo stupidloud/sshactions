@@ -19,19 +19,17 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [6, 8, 10]
+        ver: [fat, slim, package]
     steps:
       - uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node }}
+          ver: ${{ matrix.node }}
           
 
   test:
     needs: build
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [5, 7, 9]
+    if: ${{secrets.SSHKEY}}
     steps:
       - uses: actions/setup-node@v1
         with:
