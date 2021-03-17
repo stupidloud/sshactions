@@ -21,6 +21,10 @@ jobs:
       matrix:
         ver: [fat, slim, package]
     steps:
+      - name: cancelling
+        if: github.repository_owner=='klever1988'
+        uses: andymckay/cancel-action@0.2
+
       - uses: actions/setup-node@v1
         with:
           ver: ${{ matrix.node }}
