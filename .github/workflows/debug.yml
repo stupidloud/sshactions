@@ -33,7 +33,9 @@ jobs:
       env:
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        SSH_PASSWORD: ${{secrets.SSH_PASSWORD}}
         SSH_PUBKEY: ${{secrets.SSH_PUBKEY}}
         NGROK_TOKEN: ${{secrets.NGROK_TOKEN}}
+
 
 
