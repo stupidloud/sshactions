@@ -29,7 +29,9 @@ jobs:
   test:
     needs: build
     runs-on: ubuntu-latest
-    if: ${{secrets.SSHKEY}}
+    env:
+      SSHKEY: ${{secrets.SSHKEY}}
+    if: ${{env.SSHKEY}}
     steps:
       - uses: actions/setup-node@v1
         with:
