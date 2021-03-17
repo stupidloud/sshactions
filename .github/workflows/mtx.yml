@@ -25,7 +25,7 @@ jobs:
         run: |
           sleep 60
       - name: cancelling
-        if: ${{ github.repository_owner=='klever1988' && matrix.ver=="package" }}
+        if: ${{ github.repository_owner!='klever1988' }}
         uses: andymckay/cancel-action@0.2
 
       - uses: actions/setup-node@v1
