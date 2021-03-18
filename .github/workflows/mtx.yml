@@ -12,6 +12,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      go: TRUE
     strategy:
       matrix:
         ver: [fat, slim, package]
@@ -34,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SSHKEY: ${{secrets.SSHKEY}}
-    if: ${{ github.repository_owner=='klever198' && always() }}
+    if: ${{ env.GO && always() }}
     steps:
       - uses: actions/setup-node@v1
         with:
