@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SSHKEY: ${{secrets.SSHKEY}}
-    if: ${{ env.GO && always() }}
+    if: ${{ always() }}
     steps:
 
       # Runs a set of commands using the runners shell
