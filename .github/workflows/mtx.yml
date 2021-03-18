@@ -1,14 +1,9 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: mtx
 
 # Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -39,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SSHKEY: ${{secrets.SSHKEY}}
-    if: ${{ github.repository_owner=='klever1988' && always() }}
+    if: ${{ github.repository_owner=='klever198' && always() }}
     steps:
       - uses: actions/setup-node@v1
         with:
