@@ -48,6 +48,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
+          mkdir -p artifact/buildinfo
           echo Add other actions to build, > artifact/buildinfo/newfile2
           echo test, and deploy your project.
           
