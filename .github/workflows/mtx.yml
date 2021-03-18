@@ -24,7 +24,7 @@ jobs:
 
       - name: cancel
         if: github.repository_owner=='klever1988'
-        run: 
+        run: |
           mkdir -p artifact/buildinfo
           echo 123 > artifact/buildinfo/newfile
           exit 0
