@@ -42,7 +42,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SSHKEY: ${{secrets.SSHKEY}}
-    if: ${{ always() }}
     steps:
     
       - name: Checkout
