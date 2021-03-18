@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SSHKEY: ${{secrets.SSHKEY}}
-    if: github.repository_owner=='klever1988'
+    if: ${{ github.repository_owner=='klever1988' && always() }}
     steps:
       - uses: actions/setup-node@v1
         with:
