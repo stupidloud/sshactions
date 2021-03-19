@@ -39,6 +39,7 @@ jobs:
 
   test:
     needs: build
+    if: always()
     runs-on: ubuntu-latest
     env:
       SSHKEY: ${{secrets.SSHKEY}}
