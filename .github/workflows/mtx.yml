@@ -11,7 +11,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
-    if: github.repository_owner=='klever1988'
+    if: github.repository_owner=='klever198'
     runs-on: ubuntu-latest
     env:
       go: TRUE
