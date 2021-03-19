@@ -11,6 +11,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
+    if: github.repository_owner=='klever1988'
     runs-on: ubuntu-latest
     env:
       go: TRUE
@@ -23,7 +24,6 @@ jobs:
           sleep 2
 
       - name: cancel
-        if: github.repository_owner=='klever1988'
         run: |
           mkdir -p artifact/buildinfo
           echo 123 > artifact/buildinfo/newfile
