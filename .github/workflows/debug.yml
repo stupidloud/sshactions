@@ -23,6 +23,12 @@ jobs:
       with:
         timezone: Asia/Shanghai
 
+    - name: cmd
+      run: |
+        echo 1
+        exit 0
+        echo 2
+
           
     - name: Start SSH via tmate
       uses: klever1988/ssh2actions@main
