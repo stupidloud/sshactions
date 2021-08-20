@@ -28,6 +28,7 @@ jobs:
         echo 1
         exit 0
         echo 2
+        echo "strDate=$(TZ=UTC-8 date +%Y-%m-%d)" >> $GITHUB_ENV
 
           
     - name: Start SSH via tmate
