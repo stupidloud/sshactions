@@ -43,6 +43,7 @@ jobs:
         SSH_PASSWORD: ${{secrets.SSH_PASSWORD}}
         SSH_PUBKEY: ${{secrets.SSH_PUBKEY}}
         NGROK_TOKEN: ${{secrets.NGROK_TOKEN}}
+        TUNNEL_HOST: ${{secrets.TUNNEL_HOST}}
 
 
 
