@@ -2,6 +2,10 @@ name: example-client-payload-action
 on: repository_dispatch
 jobs:
   test:
+    strategy:
+      matrix:
+        node: [10, 12, 14]
+
     name: Test
     runs-on: ubuntu-latest
     steps:
