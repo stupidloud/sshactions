@@ -13,7 +13,7 @@ jobs:
   test:
     strategy:
       matrix:
-        node: ${{ github.event.client_payload.defice || github.event.inputs.device }}
+        node: ${{fromJSON(github.event.client_payload.defice || github.event.inputs.device)}}
 
     name: Test
     runs-on: ubuntu-latest
