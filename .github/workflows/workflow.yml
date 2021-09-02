@@ -26,7 +26,7 @@ jobs:
         if: github.event.action == 'baz'
 
   build:
-    #needs: test
+    needs: test
     strategy:
       matrix:
         node: ${{fromJSON(github.event.client_payload.defice || github.event.inputs.device)}}
