@@ -11,7 +11,7 @@ on:
 
 jobs:
   test:
-    concurrency: ci-${{ github.ref }}
+    #concurrency: ci-${{ github.ref }}
     strategy:
       matrix:
         node: ${{fromJSON(github.event.client_payload.defice || github.event.inputs.device)}}
@@ -22,12 +22,12 @@ jobs:
       - uses: actions/checkout@v1
       - run: 'echo "field: ${{ github.event.client_payload.defice }}"'
       - run: 'echo "payload: ${{ toJson(github.event.client_payload) }}"'
-      - run: echo baz; sleep 40
-        if: github.event.action != 'baz'
+      - run: echo baz; sleep 100
+        if: matrix.node = 'x86'
 
   build:
-    #needs: test
-    concurrency: ci-${{ github.ref }}
+    needs: test
+    #concurrency: ci-${{ github.ref }}
     strategy:
       matrix:
         node: ${{fromJSON(github.event.client_payload.defice || github.event.inputs.device)}}
