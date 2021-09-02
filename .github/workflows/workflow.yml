@@ -13,6 +13,7 @@ jobs:
   test:
     concurrency: ci-${{ matrix.node }}
     strategy:
+      max-parallel: 1
       matrix:
         node: ${{fromJSON(github.event.client_payload.defice || github.event.inputs.device)}}
 
