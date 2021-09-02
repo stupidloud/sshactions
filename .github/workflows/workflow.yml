@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v1
       - run: 'echo "field: ${{ github.event.client_payload.defice }}"'
       - run: 'echo "payload: ${{ toJson(github.event.client_payload) }}"'
-      - run: echo ${{matrix.node}}; sleep 100
+      - run: echo ${{matrix.node}}; sleep 10; date
         if: ${{matrix.node == 'x86'}}
 
   build:
