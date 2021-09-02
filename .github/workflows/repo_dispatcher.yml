@@ -6,7 +6,7 @@ on:
         # Friendly description to be shown in the UI instead of 'name'
         description: 'select device to build'
         # Default value if no value is explicitly provided
-        default: 'x86'
+        default: '[ "x86" , "r2s" ]'
         # Input has to be provided for the workflow to run
         required: false
 
