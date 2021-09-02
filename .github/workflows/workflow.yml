@@ -11,6 +11,7 @@ on:
 
 jobs:
   test:
+    concurrency: ci-${{ github.ref }}
     strategy:
       matrix:
         node: ${{fromJSON(github.event.client_payload.defice || github.event.inputs.device)}}
