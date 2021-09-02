@@ -1,10 +1,19 @@
 name: example-client-payload-action
-on: repository_dispatch
+on:
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      device:
+        description: 'select device to build'
+        default: '[ "x86" , "r2s" ]'
+        required: false
+
+
 jobs:
   test:
     strategy:
       matrix:
-        node: ${{ github.event.client_payload.defice }}
+        node: ${{ github.event.client_payload.defice || github.event.inputs.device }}
 
     name: Test
     runs-on: ubuntu-latest
