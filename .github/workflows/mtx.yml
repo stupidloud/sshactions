@@ -30,7 +30,7 @@ jobs:
   build:
     name: Test Workflow
     needs: create-matrix
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     strategy:
       matrix: ${{ fromJSON(needs.create-matrix.outputs.matrix) }}
     steps:
