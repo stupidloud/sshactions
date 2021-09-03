@@ -11,59 +11,12 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
-    if: github.repository_owner=='klever198'
-    runs-on: ubuntu-latest
-    env:
-      go: TRUE
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        ver: [fat, slim, package]
+        os: [ubuntu-18.04, ubuntu-20.04]
+        node: [10, 12, 14]
     steps:
-      - name: wait
-        run: |
-          sleep 2
-
-      - name: cancel
-        run: |
-          mkdir -p artifact/buildinfo
-          echo 123 > artifact/buildinfo/newfile
-          exit 0
-      
-      - name: Deliver buildinfo
-        uses: actions/upload-artifact@v2
+      - uses: actions/setup-node@v2
         with:
-          name: OpenWrt_buildinfo
-          path: ./artifact/buildinfo/
-
-          
-
-  test:
-    needs: build
-    if: always()
-    runs-on: ubuntu-latest
-    env:
-      SSHKEY: ${{secrets.SSHKEY}}
-    steps:
-    
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: start a daemon
-        run: |
-          chmod +x daemon.sh
-          nohup ./daemon.sh &
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          sleep 200
-          mkdir -p artifact/buildinfo
-          echo Add other actions to build, > artifact/buildinfo/newfile2
-          echo test, and deploy your project.
-          
-      - name: Deliver buildinfo
-        uses: actions/upload-artifact@v2
-        with:
-          name: OpenWrt_buildinfo
-          path: ./artifact/buildinfo/
-
+          node-version: ${{ matrix.node }}
