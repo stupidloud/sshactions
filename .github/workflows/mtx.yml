@@ -19,12 +19,7 @@ jobs:
       - name: Set Matrix
         id: set-matrix
         env:
-          MATRIX_JSON: '
-            { "include": [{
-              "non-unique": true
-            },{
-              "non-unique": true
-            }]}'
+          MATRIX_JSON: '["ubuntu-18.04", "ubuntu-latest"]'
         run: echo "::set-output name=matrix::$MATRIX_JSON"
 
   build:
