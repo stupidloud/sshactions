@@ -21,7 +21,7 @@ jobs:
         env:
           MATRIX_JSON: '["ubuntu-18.04", "ubuntu-latest"]'
         run: |
-          echo toJSON($MATRIX_JSON)
+          echo toJSON(job)
           echo "::set-output name=matrix::$MATRIX_JSON"
 
   build:
