@@ -19,7 +19,7 @@ jobs:
       - name: Set Matrix
         id: set-matrix
         env:
-          MATRIX_JSON: '["x86","r2s"]'
+          MATRIX_JSON: '[\"x86\",\"r2s\"]'
         run: |
           echo "::set-output name=matrix::$MATRIX_JSON"
 
