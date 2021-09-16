@@ -19,9 +19,8 @@ jobs:
       - name: Set Matrix
         id: set-matrix
         env:
-          MATRIX_JSON: '["ubuntu-18.04", "ubuntu-latest"]'
+          MATRIX_JSON: '["x86","r2s"]'
         run: |
-          echo toJSON(job)
           echo "::set-output name=matrix::$MATRIX_JSON"
 
   build:
