@@ -24,7 +24,7 @@ jobs:
               "non-unique"
             ,
               "unique"
-            }]}'
+            ]}'
         run: |
           echo "::set-output name=matrix::$MATRIX_JSON"
 
