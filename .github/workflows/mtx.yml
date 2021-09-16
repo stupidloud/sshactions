@@ -22,7 +22,7 @@ jobs:
       - name: Set Matrix
         id: set-matrix
         env:
-          MATRIX: ${{github.event.inputs.device}}
+          MATRIX: ${{github.event.inputs.devices}}
         run: |
           if [ $MATRIX=='' ]; then
             MATRIX='["x86","r2s"]'
