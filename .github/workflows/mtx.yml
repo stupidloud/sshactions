@@ -19,12 +19,7 @@ jobs:
       - name: Set Matrix
         id: set-matrix
         env:
-          MATRIX_JSON: '
-            { "include": [
-              "non-unique"
-            ,
-              "unique"
-            ]}'
+          MATRIX_JSON: '["x86","r2s"]'
         run: |
           echo "::set-output name=matrix::$MATRIX_JSON"
 
@@ -33,7 +28,8 @@ jobs:
     needs: create-matrix
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{ fromJSON(needs.create-matrix.outputs.matrix) }}
+      matrix: 
+        device: ${{ fromJSON(needs.create-matrix.outputs.matrix) }}
     steps:
       - name: Matrix config
         env:
