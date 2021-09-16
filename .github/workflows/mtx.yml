@@ -4,8 +4,8 @@ name: mtx
 
 # Controls when the action will run. 
 on:
-
-  # Allows you to run this workflow manually from the Actions tab
+  watch:
+    types: [started]
   workflow_dispatch:
     inputs:
       devices:
