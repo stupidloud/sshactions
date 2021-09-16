@@ -18,15 +18,18 @@ jobs:
   create-matrix:
     name: Create Matrix
     runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }} 
     steps:
       - name: Set Matrix
         id: set-matrix
         env:
-          MATRIX_JSON: ${{github.event.inputs.device}} || '["x86","r2s"]'
+          MATRIX: ${{github.event.inputs.device}}
         run: |
-          echo "::set-output name=matrix::$MATRIX_JSON"
+          if [ $MATRIX=='' ]; then
+            MATRIX='["x86","r2s"]'
+          fi
+          echo "::set-output name=matrix::$MATRIX"
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }} 
 
   build:
     name: Test Workflow
@@ -39,5 +42,5 @@ jobs:
       - name: Matrix config
         env:
           MATRIX: ${{ toJSON(matrix) }}
-        run: echo "matrix = $MATRIX"
+        run: echo $MATRIX
 
