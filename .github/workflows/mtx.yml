@@ -24,7 +24,7 @@ jobs:
         env:
           MATRIX: ${{github.event.inputs.devices}}
         run: |
-          if [ $MATRIX=='' ]; then
+          if [ -z $MATRIX ]; then
             MATRIX='["x86","r2s"]'
           fi
           echo "::set-output name=matrix::$MATRIX"
