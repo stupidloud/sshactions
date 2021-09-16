@@ -20,10 +20,10 @@ jobs:
         id: set-matrix
         env:
           MATRIX_JSON: '
-            { "include": [{
-              "non-unique": true
-            },{
-              "non-unique": true
+            { "include": [
+              "non-unique"
+            ,
+              "unique"
             }]}'
         run: |
           echo "::set-output name=matrix::$MATRIX_JSON"
