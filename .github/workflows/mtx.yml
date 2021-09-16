@@ -20,7 +20,9 @@ jobs:
         id: set-matrix
         env:
           MATRIX_JSON: '["ubuntu-18.04", "ubuntu-latest"]'
-        run: echo "::set-output name=matrix::$MATRIX_JSON"
+        run: |
+          echo toJSON($MATRIX_JSON)
+          echo "::set-output name=matrix::$MATRIX_JSON"
 
   build:
     name: Test Workflow
