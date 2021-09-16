@@ -7,6 +7,11 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      devices:
+        description: 'build devices'
+        default: '["x86", "r2s"]'
+
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -19,7 +24,7 @@ jobs:
       - name: Set Matrix
         id: set-matrix
         env:
-          MATRIX_JSON: '["x86","r2s"]'
+          MATRIX_JSON: ${{github.event.inputs.device}} || '["x86","r2s"]'
         run: |
           echo "::set-output name=matrix::$MATRIX_JSON"
 
@@ -34,6 +39,5 @@ jobs:
       - name: Matrix config
         env:
           MATRIX: ${{ toJSON(matrix) }}
-        run: |
-          echo "matrix = $MATRIX"
+        run: echo "matrix = $MATRIX"
 
