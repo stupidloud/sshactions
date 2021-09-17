@@ -1,53 +1,35 @@
-# This is a basic workflow to help you get started with Actions
+name: buildpe
 
-name: CI
-
-# Controls when the action will run. 
 on:
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
     name: Build
     runs-on: ubuntu-latest
-    env: 
-      TELEGRAM_TOO: ${{secrets.TELEGRAM_TO}}
-      DAY_OF_WEEK: Mon
-
     steps:
-    - name: "Hello world when it's Monday"
-      if: true
-      run: echo "Hello $FIRST_NAME $middle_name $Last_Name, today is Monday!"
-      env:
-        FIRST_NAME: Mona
-        middle_name: The
-        Last_Name: Octocat
+    - run: |
+        sudo apt-get install -y genisoimage
+        wget https://www.hirensbootcd.org/files/HBCD_PE_x64.iso
+        wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso
+        wget https://github.com/klever1988/sshactions/releases/download/test/Win10_21H1_X64_LITE.esd
+        mkdir iso isodir
+        sudo mount -o loop HBCD_PE_x64.iso iso
+        cp -a iso isodir
+        sudo umount iso
+        sudo mount -o loop virtio-win.iso iso
+        cp -a iso isodir/virtio
+        mv Win10_21H1_X64_LITE.esd isodir
+        mkisofs -allow-limited-size  -no-emul-boot   -b boot/etfsboot.com   -boot-load-seg 0x07C0   -boot-load-size 8   -iso-level 2   -udf   -joliet   -D   -N   -relaxed-filenames   -o merged.iso isodir/
+        
 
-    - uses: actions/checkout@master
-    - name: checkout
-      if: ${{ failure() && env.TELEGRAM_TOO }}
-      run: |
-        echo $TELEGRAM_TOO
-        echo ${{ env.TELEGRAM_TOO }}
-        TELEGRAM_TOO='222'
-        echo "TELEGRAM_TO=${{secrets.TELEGRAM_TO}}" >> $GITHUB_ENV
-        
-    - name: commands
-      run: |
-        echo $TELEGRAM_TOO
-        echo ${{ env.TELEGRAM_TO }}
-        echo $secrets.TELEGRAM_TO
-        
-    - name: send custom message with args
-      uses: appleboy/telegram-action@master
-      if: env.TELEGRAM_TOO
-      env:
-        tv: ${{env.TELEGRAM_NO}}
+    - uses: svenstaro/upload-release-action@v2
       with:
-        to: ${{ env.TELEGRAM_TO }}
-        token: ${{ secrets.TELEGRAM_TOEN }}
-        args: The ${{ github.event_name }} event triggered first step.
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: merged.iso
+        tag: test
+        overwrite: true
+        release_name: test
+
+
 
