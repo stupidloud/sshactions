@@ -22,6 +22,6 @@ jobs:
         sudo cp -a iso isodir/virtio
         sudo mv Win10_21H1_X64_LITE.esd isodir
         mkisofs -allow-limited-size -no-emul-boot -b boot/etfsboot.com -boot-load-seg 0x07C0 -boot-load-size 8 -iso-level 2 -udf -joliet -D -N -relaxed-filenames -o merged.iso isodir/
-        sshpass -p ${{secrets.HZSBPWD}} scp -P 23 merged.iso u276317@u276317.your-storagebox.de:.
+        sshpass -p ${{secrets.HZSBPWD}} scp -P 23 -o StrictHostKeyChecking=no merged.iso u276317@u276317.your-storagebox.de:.
 
 
