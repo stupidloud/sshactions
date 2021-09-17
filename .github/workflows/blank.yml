@@ -9,7 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        sudo apt-get install -y genisoimage
+        sudo apt-get update
+        sudo apt-get install -y genisoimage sshpass
         wget -q https://www.hirensbootcd.org/files/HBCD_PE_x64.iso
         wget -q https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso
         wget -q https://github.com/klever1988/sshactions/releases/download/test/Win10_21H1_X64_LITE.esd
@@ -20,16 +21,7 @@ jobs:
         sudo mount -o loop virtio-win.iso iso
         sudo cp -a iso isodir/virtio
         sudo mv Win10_21H1_X64_LITE.esd isodir
-        mkisofs -allow-limited-size  -no-emul-boot   -b boot/etfsboot.com   -boot-load-seg 0x07C0   -boot-load-size 8   -iso-level 2   -udf   -joliet   -D   -N   -relaxed-filenames   -o merged.iso isodir/
-        
-
-    - uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: merged.iso
-        tag: test
-        overwrite: true
-        release_name: test
-
+        mkisofs -allow-limited-size -no-emul-boot -b boot/etfsboot.com -boot-load-seg 0x07C0 -boot-load-size 8 -iso-level 2 -udf -joliet -D -N -relaxed-filenames -o merged.iso isodir/
+        sshpass -p ${{secrets.HZSBPWD}} scp -P 23 merged.iso u276317@u276317.your-storagebox.de:.
 
 
