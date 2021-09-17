@@ -10,10 +10,10 @@ jobs:
     steps:
     - run: |
         sudo apt-get install -y genisoimage
-        wget https://www.hirensbootcd.org/files/HBCD_PE_x64.iso
-        wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso
-        wget https://github.com/klever1988/sshactions/releases/download/test/Win10_21H1_X64_LITE.esd
-        mkdir iso isodir
+        wget -q https://www.hirensbootcd.org/files/HBCD_PE_x64.iso
+        wget -q https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso
+        wget -q https://github.com/klever1988/sshactions/releases/download/test/Win10_21H1_X64_LITE.esd
+        mkdir iso
         sudo mount -o loop HBCD_PE_x64.iso iso
         cp -a iso isodir
         sudo umount iso
