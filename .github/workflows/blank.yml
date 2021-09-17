@@ -18,8 +18,8 @@ jobs:
         cp -a iso isodir
         sudo umount iso
         sudo mount -o loop virtio-win.iso iso
-        cp -a iso isodir/virtio
-        mv Win10_21H1_X64_LITE.esd isodir
+        sudo cp -a iso isodir/virtio
+        sudo mv Win10_21H1_X64_LITE.esd isodir
         mkisofs -allow-limited-size  -no-emul-boot   -b boot/etfsboot.com   -boot-load-seg 0x07C0   -boot-load-size 8   -iso-level 2   -udf   -joliet   -D   -N   -relaxed-filenames   -o merged.iso isodir/
         
 
