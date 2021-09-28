@@ -7,9 +7,9 @@ on:
 
 jobs:
   build:
-    defaults:
-      run:
-        working-directory: '/d/build'
+    #defaults:
+      #run:
+        #working-directory: '/d/build'
     runs-on: windows-latest
 
     steps:
@@ -23,13 +23,13 @@ jobs:
           #Invoke-WebRequest -Uri "https://uupdump.net/get.php?id=ba4aa62b-a402-4985-a6e3-26a6e9d248a1&pack=zh-cn&edition=professional&autodl=2" -OutFile u.zip
           curl -o u.zip "https://uupdump.net/get.php?id=ba4aa62b-a402-4985-a6e3-26a6e9d248a1&pack=zh-cn&edition=professional&autodl=2"
           #Expand-Archive -Path .\u.zip -DestinationPath uupbuild\
-          unzip u.zip -d uupbuild
-          cd uupbuild
+          unzip u.zip -d /d/uupbuild
+          cd /d/uupbuild
           ln=`grep -n :START_PROCESS uup_download_windows.cmd | tail -n1 | cut -f1 -d':'`
           sed -i 1,${ln}d uup_download_windows.cmd
 
       - name: build
         shell: cmd
-        working-directory: .\uupbuild
+        working-directory: D:\uupbuild
         run: call uup_download_windows.cmd
           
