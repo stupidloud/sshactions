@@ -1,0 +1,27 @@
+# This is a basic workflow to help you get started with Actions
+name: genwiniso
+
+on:
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+
+      - name: Run a multi-line script
+        shell: bash
+        run: |
+          #Invoke-WebRequest -Uri "https://uupdump.net/get.php?id=ba4aa62b-a402-4985-a6e3-26a6e9d248a1&pack=zh-cn&edition=professional&autodl=2" -OutFile u.zip
+          wget "https://uupdump.net/get.php?id=ba4aa62b-a402-4985-a6e3-26a6e9d248a1&pack=zh-cn&edition=professional&autodl=2" -O u.zip
+          #Expand-Archive -Path .\u.zip -DestinationPath uupbuild\
+          unzip u.zip -d uupbuild
+          cd uupbuild
+          ln=`grep -n :START_PROCESS uup_download_windows.cmd | tail -n1 | cut -f1 -d':'`
+          sed -i 1,${ln}d uup_download_windows.cmd
+
+      - name: build
+        run: call uup_download_windows.cmd
+          
