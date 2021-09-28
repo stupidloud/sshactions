@@ -38,12 +38,13 @@ jobs:
           sed -i '/choice/a\exit \/B 0' tmpdir/convert-UUP.cmd
           cat tmpdir/convert-UUP.cmd
           cd tmpdir; 7z.exe u ../uup-converter-wimlib.7z .
-          #cd -; rm -rf tmpdir/
+          cd -; rm -rf tmpdir/
+          echo 0>input
 
 
       - name: build
         shell: cmd
         working-directory: C:\uupbuild
-        run: call uup_download_windows.cmd
+        run: call uup_download_windows.cmd<input
           
           
