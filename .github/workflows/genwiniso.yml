@@ -27,6 +27,13 @@ jobs:
           cd /c/uupbuild
           ln=`grep -n :START_PROCESS uup_download_windows.cmd | tail -n1 | cut -f1 -d':'`
           sed -i 1,${ln}d uup_download_windows.cmd
+          cd files
+          7za.exe x uup-converter-wimlib.7z -otmpdir
+          sed -i '/choice/d' tmpdir/convert-UUP.cmd
+          cd tmpdir; 7za.exe a ../uup-converter-wimlib.7z .
+          cd ..; rm -rf tmpdir/
+          
+          
 
       - name: build
         shell: cmd
