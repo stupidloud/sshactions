@@ -32,7 +32,7 @@ jobs:
           #cat uup_download_windows.cmd
           sed -i 's/AddUpdates\s*=1/AddUpdates=0/' ConvertConfig.ini
           #cd files
-          #7z.exe x uup-converter-wimlib.7z -otmpdir
+          7z.exe x uup-converter-wimlib.7z -otmpdir
           #sed -i '/Press 0/a\echo 0>input' tmpdir/convert-UUP.cmd
           #sed -i 's/choice \/c 0 \/n/choice \/c 0 \/n<input/' tmpdir/convert-UUP.cmd
           sed -i '/choice/a\exit 0' tmpdir/convert-UUP.cmd
