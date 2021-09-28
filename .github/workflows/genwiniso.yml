@@ -31,7 +31,7 @@ jobs:
           cd files
           7z.exe x uup-converter-wimlib.7z -otmpdir
           echo >> tmpdir/convert-UUP.cmd
-          sed -i '/Press 0/i\exit' tmpdir/convert-UUP.cmd
+          #sed -i '/Press 0/i\exit' tmpdir/convert-UUP.cmd
           cd tmpdir; 7z.exe u ../uup-converter-wimlib.7z .
           cd ..; rm -rf tmpdir/
 
@@ -40,6 +40,7 @@ jobs:
         shell: cmd
         working-directory: C:\uupbuild
         run: |
-          call uup_download_windows.cmd
+          echo 0>input
+          call uup_download_windows.cmd<input
           
           
