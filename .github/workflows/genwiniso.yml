@@ -21,7 +21,7 @@ jobs:
           df -h /c/ /d/
           pwd
           #Invoke-WebRequest -Uri "https://uupdump.net/get.php?id=ba4aa62b-a402-4985-a6e3-26a6e9d248a1&pack=zh-cn&edition=professional&autodl=2" -OutFile u.zip
-          curl -6o u.zip -d 'updates=0' 'https://uupdump.net/get.php?id=ba4aa62b-a402-4985-a6e3-26a6e9d248a1&pack=zh-cn&edition=professional&autodl=2'
+          curl -o u.zip -d 'updates=0' 'https://uupdump.net/get.php?id=ba4aa62b-a402-4985-a6e3-26a6e9d248a1&pack=zh-cn&edition=professional&autodl=2'
           #Expand-Archive -Path .\u.zip -DestinationPath uupbuild\
           unzip u.zip -d /c/uupbuild
           cd /c/uupbuild
@@ -38,8 +38,8 @@ jobs:
           sed -i '/choice/a\exit \/B 0' tmpdir/convert-UUP.cmd
           cat tmpdir/convert-UUP.cmd
           cd tmpdir; 7z.exe u ../uup-converter-wimlib.7z .
-          cd -; rm -rf tmpdir/
-          cd -; echo 0>input
+          cd ..; rm -rf tmpdir/
+          cd ..; echo 0>input
 
 
       - name: build
