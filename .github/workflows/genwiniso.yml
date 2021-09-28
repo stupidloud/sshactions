@@ -15,7 +15,7 @@ jobs:
         shell: bash
         run: |
           #Invoke-WebRequest -Uri "https://uupdump.net/get.php?id=ba4aa62b-a402-4985-a6e3-26a6e9d248a1&pack=zh-cn&edition=professional&autodl=2" -OutFile u.zip
-          wget "https://uupdump.net/get.php?id=ba4aa62b-a402-4985-a6e3-26a6e9d248a1&pack=zh-cn&edition=professional&autodl=2" -O u.zip
+          curl -o u.zip "https://uupdump.net/get.php?id=ba4aa62b-a402-4985-a6e3-26a6e9d248a1&pack=zh-cn&edition=professional&autodl=2"
           #Expand-Archive -Path .\u.zip -DestinationPath uupbuild\
           unzip u.zip -d uupbuild
           cd uupbuild
