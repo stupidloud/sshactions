@@ -27,7 +27,7 @@ jobs:
           cd /c/uupbuild
           ln=`grep -n :START_PROCESS uup_download_windows.cmd | tail -n1 | cut -f1 -d':'`
           sed -i 1,${ln}d uup_download_windows.cmd
-          sed -i '/call convert-UUP.cmd/a\echo gosehere1' uup_download_windows.cmd
+          sed -i '/call convert-UUP.cmd/i\echo gosehere1' uup_download_windows.cmd
           cat uup_download_windows.cmd
           #sed -i '/call convert-UUP.cmd/i\echo 0>input' uup_download_windows.cmd
           #sed -i 's/call convert-UUP.cmd/call convert-UUP.cmd<input/' uup_download_windows.cmd
