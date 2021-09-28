@@ -35,15 +35,14 @@ jobs:
           #7z.exe x uup-converter-wimlib.7z -otmpdir
           #sed -i '/Press 0/a\echo 0>input' tmpdir/convert-UUP.cmd
           #sed -i 's/choice \/c 0 \/n/choice \/c 0 \/n<input/' tmpdir/convert-UUP.cmd
-          #cd tmpdir; 7z.exe u ../uup-converter-wimlib.7z .
+          sed -i '/choice/a\exit 0' tmpdir/convert-UUP.cmd
+          cd tmpdir; 7z.exe u ../uup-converter-wimlib.7z .
           #cd -; rm -rf tmpdir/
 
 
       - name: build
         shell: cmd
         working-directory: C:\uupbuild
-        run: |
-          echo 0>input
-          call uup_download_windows.cmd<input 2>NUL
+        run: call uup_download_windows.cmd
           
           
