@@ -39,7 +39,7 @@ jobs:
           cat tmpdir/convert-UUP.cmd
           cd tmpdir; 7z.exe u ../uup-converter-wimlib.7z .
           cd -; rm -rf tmpdir/
-          echo 0>input
+          cd -; echo 0>input
 
 
       - name: build
