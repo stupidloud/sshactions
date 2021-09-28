@@ -24,5 +24,6 @@ jobs:
 
       - name: build
         shell: cmd
+        working-directory: uupbuild
         run: call uup_download_windows.cmd
           
