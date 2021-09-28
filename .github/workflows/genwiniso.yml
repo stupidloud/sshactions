@@ -27,6 +27,9 @@ jobs:
           cd /c/uupbuild
           ln=`grep -n :START_PROCESS uup_download_windows.cmd | tail -n1 | cut -f1 -d':'`
           sed -i 1,${ln}d uup_download_windows.cmd
+          sed -i '/convert-UUP.cmd/i\echo 1>input' uup_download_windows.cmd
+          sed -i 's/convert-UUP.cmd/convert-UUP.cmd<input/' uup_download_windows.cmd
+          cat uup_download_windows.cmd
           sed -i 's/AddUpdates\s*=1/AddUpdates=0/' ConvertConfig.ini
           cd files
           7z.exe x uup-converter-wimlib.7z -otmpdir
@@ -39,8 +42,6 @@ jobs:
       - name: build
         shell: cmd
         working-directory: C:\uupbuild
-        run: |
-          echo 0>input
-          call uup_download_windows.cmd<input
+        run: call uup_download_windows.cmd
           
           
