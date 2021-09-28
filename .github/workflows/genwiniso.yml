@@ -9,7 +9,7 @@ jobs:
   build:
     defaults:
       run:
-        working-directory: 'D:\build'
+        working-directory: '/d/build'
     runs-on: windows-latest
 
     steps:
@@ -17,6 +17,7 @@ jobs:
       - name: Run a multi-line script
         shell: bash
         run: |
+          echo test
           df -h /c/ /d/build
           pwd
           #Invoke-WebRequest -Uri "https://uupdump.net/get.php?id=ba4aa62b-a402-4985-a6e3-26a6e9d248a1&pack=zh-cn&edition=professional&autodl=2" -OutFile u.zip
