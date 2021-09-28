@@ -21,6 +21,7 @@ jobs:
           cd uupbuild
           ln=`grep -n :START_PROCESS uup_download_windows.cmd | tail -n1 | cut -f1 -d':'`
           sed -i 1,${ln}d uup_download_windows.cmd
+          df -h /c/ /d/
 
       - name: build
         shell: cmd
