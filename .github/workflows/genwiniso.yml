@@ -20,10 +20,8 @@ jobs:
 
       - name: Run a multi-line script
         shell: bash
+        working-directory: /c/uupbuild
         run: |
-          echo test
-          df -h /c/ /d/
-          pwd
           #Invoke-WebRequest -Uri "https://uupdump.net/get.php?id=ba4aa62b-a402-4985-a6e3-26a6e9d248a1&pack=zh-cn&edition=professional&autodl=2" -OutFile u.zip
           curl -o u.zip -d 'autodl=2&updates=1' 'https://uupdump.net/get.php?id=ba4aa62b-a402-4985-a6e3-26a6e9d248a1&pack=zh-cn&edition=professional'
           #Expand-Archive -Path .\u.zip -DestinationPath uupbuild\
@@ -55,4 +53,9 @@ jobs:
         working-directory: C:\uupbuild
         run: call uup_download_windows.cmd<input
           
-          
+      - name: push
+        shell: bash
+        working-directory: /c/uupbuild
+        run: |
+          mv `ls *.iso` latestwin10.iso
+          sshpass -p ${{secrets.HZSBPWD}} scp -P 23 -o StrictHostKeyChecking=no latestwin10.iso u276317@u276317.your-storagebox.de:.
