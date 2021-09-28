@@ -29,7 +29,7 @@ jobs:
           sed -i 1,${ln}d uup_download_windows.cmd
           cd files
           7z.exe x uup-converter-wimlib.7z -otmpdir
-          sed -i '/choice/i\exit' tmpdir/convert-UUP.cmd
+          #sed -i '/choice/i\exit' tmpdir/convert-UUP.cmd
           cd tmpdir; 7z.exe u ../uup-converter-wimlib.7z .
           cd ..; rm -rf tmpdir/
 
