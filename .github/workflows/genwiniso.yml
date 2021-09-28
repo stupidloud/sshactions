@@ -23,5 +23,6 @@ jobs:
           sed -i 1,${ln}d uup_download_windows.cmd
 
       - name: build
+        shell: cmd
         run: call uup_download_windows.cmd
           
