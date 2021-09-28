@@ -56,5 +56,14 @@ jobs:
         shell: bash
         run: |
           cd /c/uupbuild
-          mv `ls *.iso` latestwin10.iso
-          sshpass -p ${{secrets.HZSBPWD}} scp -P 23 -o StrictHostKeyChecking=no latestwin10.iso u276317@u276317.your-storagebox.de:.
+          mv `ls *.ISO` latestwin10.iso
+          #sshpass -p ${{secrets.HZSBPWD}} scp -P 23 -o StrictHostKeyChecking=no latestwin10.iso u276317@u276317.your-storagebox.de:.
+
+      - uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: latestwin10.iso
+          tag: test
+          overwrite: true
+          release_name: test
+
