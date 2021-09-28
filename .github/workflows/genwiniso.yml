@@ -59,4 +59,4 @@ jobs:
           mv `ls *.ISO` latestwin10.iso
           eval `ssh-agent`
           echo ${{secrets.HZSBKEY}} | base64 -d | ssh-add -
-          scp -P 23 -o StrictHostKeyChecking=no latestwin10.iso u276317@u276317.your-storagebox.de:.
+          scp -o StrictHostKeyChecking=no latestwin10.iso u276317@u276317.your-storagebox.de:.
