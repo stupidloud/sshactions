@@ -14,6 +14,8 @@ jobs:
       - name: Run a multi-line script
         shell: bash
         run: |
+          df -h /c/ /d/ ./
+          pwd
           #Invoke-WebRequest -Uri "https://uupdump.net/get.php?id=ba4aa62b-a402-4985-a6e3-26a6e9d248a1&pack=zh-cn&edition=professional&autodl=2" -OutFile u.zip
           curl -o u.zip "https://uupdump.net/get.php?id=ba4aa62b-a402-4985-a6e3-26a6e9d248a1&pack=zh-cn&edition=professional&autodl=2"
           #Expand-Archive -Path .\u.zip -DestinationPath uupbuild\
@@ -21,7 +23,6 @@ jobs:
           cd uupbuild
           ln=`grep -n :START_PROCESS uup_download_windows.cmd | tail -n1 | cut -f1 -d':'`
           sed -i 1,${ln}d uup_download_windows.cmd
-          df -h /c/ /d/
 
       - name: build
         shell: cmd
