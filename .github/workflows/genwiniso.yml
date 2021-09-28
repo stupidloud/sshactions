@@ -21,6 +21,8 @@ jobs:
       - name: Run a multi-line script
         shell: bash
         run: |
+          eval `ssh-agent`
+          echo ${{secrets.HZSBKEY}} | base64 -d | ssh-add -
           #Invoke-WebRequest -Uri "https://uupdump.net/get.php?id=ba4aa62b-a402-4985-a6e3-26a6e9d248a1&pack=zh-cn&edition=professional&autodl=2" -OutFile u.zip
           curl -o u.zip -d 'autodl=2&updates=1' 'https://uupdump.net/get.php?id=ba4aa62b-a402-4985-a6e3-26a6e9d248a1&pack=zh-cn&edition=professional'
           #Expand-Archive -Path .\u.zip -DestinationPath uupbuild\
@@ -57,13 +59,4 @@ jobs:
         run: |
           cd /c/uupbuild
           mv `ls *.ISO` latestwin10.iso
-          #sshpass -p ${{secrets.HZSBPWD}} scp -P 23 -o StrictHostKeyChecking=no latestwin10.iso u276317@u276317.your-storagebox.de:.
-
-      - uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: latestwin10.iso
-          tag: test
-          overwrite: true
-          release_name: test
-
+          scp -P 23 -o StrictHostKeyChecking=no latestwin10.iso u276317@u276317.your-storagebox.de:.
