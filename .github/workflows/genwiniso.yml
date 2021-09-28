@@ -21,18 +21,18 @@ jobs:
       - name: Run a multi-line script
         shell: bash
         run: |
-          curl -o u.zip -d 'autodl=2&updates=1&esd=1' 'https://uupdump.net/get.php?id=ba4aa62b-a402-4985-a6e3-26a6e9d248a1&pack=zh-cn&edition=professional'
+          latest_build_uuid=`curl 'https://api.uupdump.net/listid.php?search=19044' | jq -r '.response.builds[] | select(.arch=="amd64") | .uuid' | head -n1`
+          curl -o u.zip -d 'autodl=2&updates=1&esd=1' 'https://uupdump.net/get.php?id='$latest_build_uuid'&pack=zh-cn&edition=professional'
           unzip u.zip -d /c/uupbuild
           cd /c/uupbuild
           ln=`grep -n :START_PROCESS uup_download_windows.cmd | tail -n1 | cut -f1 -d':'`
           sed -i 1,${ln}d uup_download_windows.cmd
           sed -i '/call convert-UUP.cmd/a\exit 0' uup_download_windows.cmd
 
-
       - name: build
         shell: cmd
         working-directory: C:\uupbuild
-        run: call uup_download_windows.cmd<input
+        run: call uup_download_windows.cmd
           
       - name: push
         shell: bash
