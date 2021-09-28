@@ -38,5 +38,7 @@ jobs:
       - name: build
         shell: cmd
         working-directory: C:\uupbuild
-        run: call uup_download_windows.cmd
+        run: |
+          call uup_download_windows.cmd
+          type convert-UUP.cmd
           
