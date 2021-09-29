@@ -1,9 +1,12 @@
-# This is a basic workflow to help you get started with Actions
 name: genwiniso
 
 on:
-
   workflow_dispatch:
+    inputs:
+      build:
+        description: 'build num'     
+        required: true
+        default: '19044'
   push:
     paths:
       - '.github/workflows/genwiniso.yml'
@@ -11,9 +14,6 @@ on:
 
 jobs:
   build:
-    #defaults:
-      #run:
-        #working-directory: '/c/build'
     runs-on: windows-latest
 
     steps:
@@ -21,24 +21,25 @@ jobs:
       - name: Run a multi-line script
         shell: bash
         run: |
-          latest_build_uuid=`curl 'https://api.uupdump.net/listid.php?search=19044' | jq -r '.response.builds[] | select(.arch=="amd64") | .uuid' | head -n1`
+          latest_build_uuid=`curl 'https://api.uupdump.net/listid.php?search=${{github.event.inputs.tags}}' | jq -r '.response.builds[] | select(.arch=="amd64") | .uuid' | head -n1`
           curl -o u.zip -d 'autodl=2&updates=1&esd=1' 'https://uupdump.net/get.php?id='$latest_build_uuid'&pack=zh-cn&edition=professional'
           unzip u.zip -d /c/uupbuild
           cd /c/uupbuild
           ln=`grep -n :START_PROCESS uup_download_windows.cmd | tail -n1 | cut -f1 -d':'`
           sed -i 1,${ln}d uup_download_windows.cmd
+          sed -i 's/SkipWinRE\s*=0/SkipWinRE=1/' ConvertConfig.ini
           sed -i '/call convert-UUP.cmd/a\exit 0' uup_download_windows.cmd
 
       - name: build
         shell: cmd
         working-directory: C:\uupbuild
         run: call uup_download_windows.cmd
-          
+
       - name: push
         shell: bash
         run: |
           cd /c/uupbuild
-          mv `ls *.ISO` latestwin10.iso
+          ls *.ISO
           eval `ssh-agent`
           echo ${{secrets.HZSBKEY}} | base64 -d | ssh-add -
-          scp -o StrictHostKeyChecking=no latestwin10.iso u276317@u276317.your-storagebox.de:.
+          scp -o StrictHostKeyChecking=no *.ISO u276317@u276317.your-storagebox.de:.
