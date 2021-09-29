@@ -21,7 +21,7 @@ jobs:
       - name: Run a multi-line script
         shell: bash
         run: |
-          latest_build_uuid=`curl 'https://api.uupdump.net/listid.php?search=${{github.event.inputs.tags}}' | jq -r '.response.builds[] | select(.arch=="amd64") | .uuid' | head -n1`
+          latest_build_uuid=`curl 'https://api.uupdump.net/listid.php?search=${{github.event.inputs.build}}' | jq -r '.response.builds[] | select(.arch=="amd64") | .uuid' | head -n1`
           curl -o u.zip -d 'autodl=2&updates=1&esd=1' 'https://uupdump.net/get.php?id='$latest_build_uuid'&pack=zh-cn&edition=professional'
           unzip u.zip -d /c/uupbuild
           cd /c/uupbuild
