@@ -17,19 +17,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-
-    - name: Setup timezone
-      uses: zcong1993/setup-timezone@master
-      with:
-        timezone: Asia/Shanghai
-
-    - name: init
-      run: |
-        echo "strDate=$(TZ=UTC-8 date +%Y-%m-%d)" >> $GITHUB_ENV
-        sudo apt -y install language-pack-zh-hans
-        sudo locale-gen
-        sudo localectl set-locale LANG=zh_CN.UTF-8
-
           
     - name: Start SSH via tmate
       uses: klever1988/ssh2actions@main
