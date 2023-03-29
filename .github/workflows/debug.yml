@@ -23,7 +23,7 @@ jobs:
       with:
         timezone: Asia/Shanghai
 
-    - name: cmd
+    - name: init
       run: |
         echo "strDate=$(TZ=UTC-8 date +%Y-%m-%d)" >> $GITHUB_ENV
         sudo apt -y install language-pack-zh-hans
