@@ -33,7 +33,7 @@ jobs:
     - name: Start SSH via tmate
       uses: klever1988/ssh2actions@main
       with:
-        mode: tmate
+        mode: ngrok
       # Send connection info to Telegram (optional)
       # You can find related documents here: https://core.telegram.org/bots
       env:
