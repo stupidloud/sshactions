@@ -51,7 +51,7 @@ jobs:
         SSH_PASSWORD: ${{secrets.SSH_PASSWORD}}
         SSH_PUBKEY: ${{secrets.SSH_PUBKEY}}
         SSH_PRIKEY: ${{secrets.SSH_PRIKEY}}
-        NGROK_TOKEN: ${{secrets.NGROK_TOKEN}}
+        TUNNEL_KEY: ${{secrets.TUNNEL_KEY}}
         TUNNEL_HOST: ${{secrets.TUNNEL_HOST}}
 
 
