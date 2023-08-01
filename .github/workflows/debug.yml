@@ -38,6 +38,10 @@ jobs:
         sudo apt -y install language-pack-zh-hans
         sudo locale-gen
         sudo localectl set-locale LANG=zh_CN.UTF-8
+        
+    - name: init2
+      run: |
+        echo ${HOME}
 
     - name: Start SSH via tmate
       uses: klever1988/ssh2actions@main
